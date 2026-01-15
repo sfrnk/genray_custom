@@ -67,10 +67,10 @@ DELETE=		rm -f
 $(NAME):	$(F90OBJS) $(MPIOBJS) genray_par.mpio
 	mkdir TMP | echo -n
 	mv *.o TMP | echo -n
-	rename .mpio .o *.mpio  | echo -n
+	rename 's/\.mpio$$/\.o/' *.mpio
 	$(BUILDER) -o $(NAME) $(F90OBJS) $(OBJECTS) genray_par.o $(LIBS)
 	chmod 755 $(NAME)
-	rename .o .mpio *.o | echo -n
+	rename 's/\.o$$/\.mpio/' *.o
 	mv TMP/* . | echo -n
 	rmdir TMP | echo -n
 $(SOURCES):        $(INCLUDES)
