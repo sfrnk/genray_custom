@@ -1146,7 +1146,7 @@ c-----------------------------------------------------------------
 c            write(*,*)'rside1 id=16 can not work for idif=1'
 c            stop 'in rside1.f'
 c           write(*,*)'rside1 before bonoli_dervs'
-           call bonoli_dervs(u,wf,
+           call sfrnk_dervs(u,wf,
      &     dddz,dddr,dddphi,
      &     dddcnz,dddcnr,dddcm,dddw)   
 c           write(*,*)'rside1 after bonoli_dervs'

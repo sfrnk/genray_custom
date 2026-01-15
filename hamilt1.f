@@ -424,7 +424,7 @@ c     for LH wave: cold plasma plus thermal correction
 
 c        write(*,*)'hamilt1 before  bonoli_Dispersion'
 
-         call  bonoli_Dispersion(
+         call  sfrnk_lh(
      &   X_ar,Y_ar,T_av_ar,dmas,nbulk,
      &   cnpar,cnper,D_0)
 

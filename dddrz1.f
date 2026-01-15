@@ -910,7 +910,7 @@ c-----------------------------------------------------------------
 c          write(*,*)'in dddrz1.f can not work for i=16 idif=1'
 c          !stop 'in dddrz1.f'
         
-           call bonoli_dervs(u,wf,
+           call sfrnk_dervs(u,wf,
      &     dddz,dddr,dddphi,
      &     dddcnz,dddcnr,dddcm,dddw)   
           goto 50
