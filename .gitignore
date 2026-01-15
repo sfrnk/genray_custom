@@ -1,0 +1,33 @@
+# .gitignore
+
+# emacs autosaves
+*~
+*#
+
+# preprocessed fortran files
+*_mpitmp.f
+*.mpio
+
+# compiled fortran object files
+*.o
+
+# compiled fortran module files
+*.mod
+
+# genray executables
+xgenray*
+
+# plots and datafiles
+# Ignore saved plots
+*.png
+*.pdf
+*.eps
+
+# Ignore data files
+*.npy
+*.p
+*.mat
+*.csv
+*.hdf5
+*.h5
+.ipynb*
