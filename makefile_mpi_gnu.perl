@@ -61,8 +61,10 @@ LIBS = $(LOCATION) -lpgplot -L/usr/lib64 -lX11
 
 DEBUG     =  -g -fbacktrace -fbounds-check -ffpe-trap=invalid,zero
 OPTIMIZE  = -Ofast
-
-COMPILE=	$(COMPILER) -c $(CSPECIAL) $(INCLUDE) $(OPTIMIZE)
+CSPECIAL = -frecord-marker=4 -Wno-padded -w -fno-strict-aliasing -fbackslash -fallow-argument-mismatch -fno-align-commons -std=legacy
+BSPECIAL = $(CSPECIAL)
+    
+COMPILE=	$(COMPILER) -c $(INCLUDE) $(CSPECIAL)  $(OPTIMIZE)
 BUILD=		$(BUILDER) -o $(NAME) $(BSPECIAL) $(OPTIMIZE)
 
 PROTECT=	chmod 755
@@ -88,7 +90,7 @@ $(MPIOBJS): %.mpio: %.f
 	mpi/cmm -p WRITE "write(*," temp_mpi.f
 	mpi/cmm -p PAUSE "pause" temp_mpi.f
 	mpi/cmm -p PRINT " print " temp_mpi.f
-	$(COMPILER) -c temp_mpi.f $(INCLUDE) -o temp_mpi.o
+	$(COMPILER) -c temp_mpi.f $(INCLUDE) $(CSPECIAL) $(OPTIMIZE) -o temp_mpi.o
 	mv temp_mpi.o $@
 	rm -f temp_mpi.f
 
@@ -99,7 +101,7 @@ genray_par.mpio:	genray.f mpi/mpi.ins
 	mpi/cmm -p PAUSE "pause" temp_mpi.f
 	mpi/cmm -p PRINT " print " temp_mpi.f
 	mpi/auto temp_mpi.f mpi/mpi.ins >genray_par.f
-	$(COMPILER) -c genray_par.f $(INCLUDE) -o temp_mpi.o
+	$(COMPILER) -c genray_par.f $(INCLUDE) $(CSPECIAL) $(OPTIMIZE) -o temp_mpi.o
 	mv temp_mpi.o genray_par.mpio
 	rm -f temp_mpi.f
 	cp kind_spec.o kind_spec.mpio
