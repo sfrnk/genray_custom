@@ -55,7 +55,7 @@ MPIOBJS=	$(SOURCES:.f=.mpio)
 F90SRCS=	kind_spec.f90 const_and_precisions.f90 quanc8.f90 config_ext.f90 green_func_ext.f90
 F90OBJS=	$(F90SRCS:.f90=.o)
 
-LOCATION= -L/global/homes/s/sfrnk/perlmutter_builds/pgplot/pgplotlib
+LOCATION= -L$(PGPLOT_DIR)
 
 LIBS = $(LOCATION) -lpgplot -L/usr/lib64 -lX11
 
